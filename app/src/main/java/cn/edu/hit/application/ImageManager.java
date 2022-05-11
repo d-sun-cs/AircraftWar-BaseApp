@@ -4,6 +4,7 @@ package cn.edu.hit.application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 import cn.edu.hit.R;
 import cn.edu.hit.aircraft.HeroAircraft;
@@ -80,6 +81,26 @@ public class ImageManager {
             return null;
         }
         return get(obj.getClass().getName());
+    }
+
+    /**
+     * 调整图片大小
+     *
+     * @param bitmap 源
+     * @param dst_w  输出宽度
+     * @param dst_h  输出高度
+     * @return
+     */
+    public static Bitmap imageScale(Bitmap bitmap, float dst_w, float dst_h) {
+        int src_w = bitmap.getWidth();
+        int src_h = bitmap.getHeight();
+        float scale_w = ((float) dst_w) / src_w;
+        float scale_h = ((float) dst_h) / src_h;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale_w, scale_h);
+        Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, src_w, src_h, matrix,
+                true);
+        return dstbmp;
     }
 
 }

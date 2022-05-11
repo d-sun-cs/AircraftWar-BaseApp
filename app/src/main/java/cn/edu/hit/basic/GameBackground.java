@@ -66,27 +66,7 @@ public class GameBackground extends View {
         if (image == null) {
             image = ImageManager.get(this);
         }
-        return imageScale(image, MainActivity.WINDOW_WIDTH, MainActivity.WINDOW_HEIGHT);
-    }
-
-    /**
-     * 调整图片大小
-     *
-     * @param bitmap 源
-     * @param dst_w  输出宽度
-     * @param dst_h  输出高度
-     * @return
-     */
-    private Bitmap imageScale(Bitmap bitmap, int dst_w, int dst_h) {
-        int src_w = bitmap.getWidth();
-        int src_h = bitmap.getHeight();
-        float scale_w = ((float) dst_w) / src_w;
-        float scale_h = ((float) dst_h) / src_h;
-        Matrix matrix = new Matrix();
-        matrix.postScale(scale_w, scale_h);
-        Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, src_w, src_h, matrix,
-                true);
-        return dstbmp;
+        return ImageManager.imageScale(image, MainActivity.WINDOW_WIDTH, MainActivity.WINDOW_HEIGHT);
     }
 
     public int getImageWidth() {

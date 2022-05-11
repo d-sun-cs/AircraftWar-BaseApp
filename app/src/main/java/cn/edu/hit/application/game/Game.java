@@ -80,10 +80,10 @@ public class Game extends FrameLayout {
                 , MainActivity.WINDOW_WIDTH / 2,
                 MainActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
                 0, 0, 100);
-        heroAircraft.setOnTouchListener((v, event) -> {
+        /*heroAircraft.setOnTouchListener((v, event) -> {
             heroAircraft.setLocation(event.getX(), event.getY());
             return true;
-        });
+        });*/
         background = new GameBackground(context);
         scoreAndHp = new TextView(context);
         scoreAndHp.setTextColor(Color.RED);

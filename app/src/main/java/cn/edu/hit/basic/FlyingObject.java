@@ -167,10 +167,18 @@ public abstract class FlyingObject extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(getImage(),
-                locationX - (float) getImageWidth() / 2,
-                locationY - (float) getImageHeight() / 2,
+        float longerWidth = getImageWidth() * 1.4f;
+        float longerHeight = getImageHeight() * 1.4f;
+        Bitmap biggerImage = ImageManager.imageScale(getImage(), longerWidth, longerHeight);
+        canvas.drawBitmap(biggerImage,
+                locationX - longerWidth / 2.0f,
+                locationY - longerHeight / 2.0f,
                 new Paint());
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
     }
 
     public boolean notValid() {

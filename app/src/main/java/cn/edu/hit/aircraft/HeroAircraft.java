@@ -4,6 +4,7 @@ package cn.edu.hit.aircraft;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,5 +62,16 @@ public class HeroAircraft extends AbstractAircraft {
             res.add(abstractBullet);
         }
         return res;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
+        if (Math.abs(touchX - getLocationX()) > getImageWidth() * 1.4|| Math.abs(touchY - getLocationY()) > getImageHeight() * 1.8) {
+            return true;
+        }
+        setLocation(touchX, touchY);
+        return true;
     }
 }
