@@ -58,7 +58,15 @@ public abstract class FlyingObject extends View {
      */
     protected int height = -1;
 
+    /**
+     * 应用上下文
+     */
     protected Context context;
+
+    /**
+     * 图片放大的倍数
+     */
+    protected final float zoomFactor = 1.4f;
 
     /**
      * 有效（生存）标记，
@@ -110,18 +118,18 @@ public abstract class FlyingObject extends View {
      */
     public boolean crash(FlyingObject flyingObject) {
         // 缩放因子，用于控制 y轴方向区域范围
-        int factor = this instanceof AbstractAircraft ? 2 : 1;
-        int fFactor = flyingObject instanceof AbstractAircraft ? 2 : 1;
+        float factor = this instanceof AbstractAircraft ? 2 : 1;
+        float fFactor = flyingObject instanceof AbstractAircraft ? 2 : 1;
 
         int x = flyingObject.getLocationX();
         int y = flyingObject.getLocationY();
-        int fWidth = flyingObject.getImageWidth();
-        int fHeight = flyingObject.getImageHeight();
+        float fWidth = flyingObject.getImageWidth() * zoomFactor;
+        float fHeight = flyingObject.getImageHeight() * zoomFactor;
 
-        return x + (fWidth + this.getImageWidth()) / 2 > locationX
-                && x - (fWidth + this.getImageWidth()) / 2 < locationX
-                && y + (fHeight / fFactor + this.getImageHeight() / factor) / 2 > locationY
-                && y - (fHeight / fFactor + this.getImageHeight() / factor) / 2 < locationY;
+        return x + (fWidth + this.getImageWidth() * zoomFactor) / 2 > locationX
+                && x - (fWidth + this.getImageWidth() * zoomFactor) / 2 < locationX
+                && y + (fHeight / fFactor + this.getImageHeight() * zoomFactor / factor) / 2 > locationY
+                && y - (fHeight / fFactor + this.getImageHeight() * zoomFactor / factor) / 2 < locationY;
     }
 
     public int getLocationX() {
@@ -167,8 +175,8 @@ public abstract class FlyingObject extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float longerWidth = getImageWidth() * 1.4f;
-        float longerHeight = getImageHeight() * 1.4f;
+        float longerWidth = getImageWidth() * zoomFactor;
+        float longerHeight = getImageHeight() * zoomFactor;
         Bitmap biggerImage = ImageManager.imageScale(getImage(), longerWidth, longerHeight);
         canvas.drawBitmap(biggerImage,
                 locationX - longerWidth / 2.0f,

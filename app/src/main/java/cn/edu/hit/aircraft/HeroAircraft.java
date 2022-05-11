@@ -68,7 +68,7 @@ public class HeroAircraft extends AbstractAircraft {
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
-        if (Math.abs(touchX - getLocationX()) > getImageWidth() * 1.4|| Math.abs(touchY - getLocationY()) > getImageHeight() * 1.8) {
+        if (Math.abs(touchX - getLocationX()) > getImageWidth() * zoomFactor|| Math.abs(touchY - getLocationY()) > getImageHeight() * zoomFactor * zoomFactor) {
             return true;
         }
         setLocation(touchX, touchY);
