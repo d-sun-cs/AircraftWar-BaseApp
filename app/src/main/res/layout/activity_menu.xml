@@ -37,4 +37,21 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/startSimpleGame"/>
 
+    <TextView
+        android:id="@+id/musicText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="音效"
+        android:layout_below="@id/startDifficultGame"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/musicChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/musicEnable"
+        android:layout_below="@id/startDifficultGame"
+        android:layout_toEndOf="@+id/musicText"
+        android:layout_toRightOf="@+id/musicText" />
+
 </RelativeLayout>

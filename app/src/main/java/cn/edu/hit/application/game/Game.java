@@ -2,7 +2,9 @@ package cn.edu.hit.application.game;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import cn.edu.hit.activity.GameActivity;
+import cn.edu.hit.activity.RankActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
@@ -144,6 +147,8 @@ public class Game extends FrameLayout {
                 executorService.shutdown();
                 gameOverFlag = true;
                 System.out.println("Game Over!");
+                context.finish();
+                context.startActivity(new Intent(context, RankActivity.class));
             }
 
         };
