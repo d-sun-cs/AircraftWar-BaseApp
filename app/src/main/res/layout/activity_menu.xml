@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MenuActivity">
+
+    <Button
+        android:id="@+id/startGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/startGame"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/startEasyGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简单模式"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/startSimpleGame"/>
+
+    <Button
+        android:id="@+id/startSimpleGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="普通模式"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <Button
+        android:id="@+id/startDifficultGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="困难模式"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/startSimpleGame"/>
+
+</RelativeLayout>

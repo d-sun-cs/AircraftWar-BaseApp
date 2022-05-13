@@ -11,7 +11,7 @@ import cn.edu.hit.R;
 import cn.edu.hit.application.ImageManager;
 import cn.edu.hit.application.game.Game;
 
-public class MainActivity extends Activity {
+public class GameActivity extends Activity {
     public static int WINDOW_WIDTH;
     public static int WINDOW_HEIGHT;
 

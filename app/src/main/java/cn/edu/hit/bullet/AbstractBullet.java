@@ -2,7 +2,7 @@ package cn.edu.hit.bullet;
 
 import android.content.Context;
 
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.basic.FlyingObject;
 
 /**
@@ -25,12 +25,12 @@ public class AbstractBullet extends FlyingObject {
         super.forward();
 
         // 判定 x 轴出界
-        if (locationX <= 0 || locationX >= MainActivity.WINDOW_WIDTH) {
+        if (locationX <= 0 || locationX >= GameActivity.WINDOW_WIDTH) {
             vanish();
         }
 
         // 判定 y 轴出界
-        if (speedY > 0 && locationY >= MainActivity.WINDOW_HEIGHT) {
+        if (speedY > 0 && locationY >= GameActivity.WINDOW_HEIGHT) {
             // 向下飞行出界
             vanish();
         }else if (locationY <= 0){

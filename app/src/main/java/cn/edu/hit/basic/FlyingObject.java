@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
 import cn.edu.hit.application.ImageManager;
 
@@ -95,7 +95,7 @@ public abstract class FlyingObject extends View {
     public void forward() {
         locationX += speedX;
         locationY += speedY;
-        if (locationX <= 0 || locationX >= MainActivity.WINDOW_WIDTH) {
+        if (locationX <= 0 || locationX >= GameActivity.WINDOW_WIDTH) {
             // 横向超出边界后反向
             speedX = -speedX;
         }

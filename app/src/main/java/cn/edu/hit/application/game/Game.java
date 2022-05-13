@@ -2,18 +2,9 @@ package cn.edu.hit.application.game;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
@@ -77,8 +68,8 @@ public class Game extends FrameLayout {
         this.context = context;
         heroAircraft = new HeroAircraft(
                 context
-                , MainActivity.WINDOW_WIDTH / 2,
-                MainActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
+                , GameActivity.WINDOW_WIDTH / 2,
+                GameActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
                 0, 0, 100);
         /*heroAircraft.setOnTouchListener((v, event) -> {
             heroAircraft.setLocation(event.getX(), event.getY());
@@ -120,8 +111,8 @@ public class Game extends FrameLayout {
                 if (enemyAircrafts.size() < enemyMaxNumber) {
                     MobEnemy mobEnemy = new MobEnemy(
                             context,
-                            (int) (Math.random() * (MainActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
-                            (int) (Math.random() * MainActivity.WINDOW_HEIGHT * 0.2),
+                            (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
+                            (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
                             0,
                             10,
                             30
@@ -300,7 +291,7 @@ public class Game extends FrameLayout {
         background.setBackGroundTop(backGroundTop);
         context.runOnUiThread(background::invalidate);
         this.backGroundTop += 1;
-        if (this.backGroundTop == MainActivity.WINDOW_HEIGHT) {
+        if (this.backGroundTop == GameActivity.WINDOW_HEIGHT) {
             this.backGroundTop = 0;
         }
 

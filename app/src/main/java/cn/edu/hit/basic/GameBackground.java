@@ -2,14 +2,11 @@ package cn.edu.hit.basic;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 
-import cn.edu.hit.R;
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.application.ImageManager;
 
 public class GameBackground extends View {
@@ -54,8 +51,8 @@ public class GameBackground extends View {
         }
         Bitmap background0 = Bitmap.createBitmap(background,
                 0,
-                MainActivity.WINDOW_HEIGHT - backGroundTop,
-                MainActivity.WINDOW_WIDTH,
+                GameActivity.WINDOW_HEIGHT - backGroundTop,
+                GameActivity.WINDOW_WIDTH,
                 backGroundTop);
 
         canvas.drawBitmap(background0, 0, 0, new Paint());
@@ -66,7 +63,7 @@ public class GameBackground extends View {
         if (image == null) {
             image = ImageManager.get(this);
         }
-        return ImageManager.imageScale(image, MainActivity.WINDOW_WIDTH, MainActivity.WINDOW_HEIGHT);
+        return ImageManager.imageScale(image, GameActivity.WINDOW_WIDTH, GameActivity.WINDOW_HEIGHT);
     }
 
     public int getImageWidth() {
