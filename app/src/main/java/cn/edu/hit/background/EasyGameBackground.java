@@ -1,4 +1,4 @@
-package cn.edu.hit.basic;
+package cn.edu.hit.background;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.view.View;
 import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.application.ImageManager;
 
-public class GameBackground extends View {
+public class EasyGameBackground extends View {
     Context context;
 
     /**
@@ -36,7 +36,7 @@ public class GameBackground extends View {
 
     private int backGroundTop;
 
-    public GameBackground(Context context) {
+    public EasyGameBackground(Context context) {
         super(context);
         this.context = context;
     }

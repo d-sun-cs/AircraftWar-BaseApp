@@ -20,18 +20,26 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("TAG", "onCreate: menu on create");
         setContentView(R.layout.activity_menu);
 
-        Button startGameButton = findViewById(R.id.startGame);
+        Button easyGameButton = findViewById(R.id.startEasyGame);
+        Button simpleGameButton = findViewById(R.id.startSimpleGame);
+        Button difficultGameButton = findViewById(R.id.startDifficultGame);
         Spinner musicChoice = findViewById(R.id.musicChoice);
 
-
-        startGameButton.setOnClickListener(v -> {
-            Toast.makeText(MenuActivity.this, "音效：" + musicChoice.getSelectedItem(), Toast.LENGTH_LONG).show();
-            startActivity(new Intent(MenuActivity.this, GameActivity.class));
-        });
+        easyGameButton.setOnClickListener(v -> startGame("简单", (String) musicChoice.getSelectedItem()));
+        simpleGameButton.setOnClickListener(v -> startGame("普通", (String) musicChoice.getSelectedItem()));
+        difficultGameButton.setOnClickListener(v -> startGame("困难", (String) musicChoice.getSelectedItem()));
 
 
+    }
+
+    private void startGame(String difficulty, String musicChoice) {
+        Bundle dataForGame = new Bundle();
+        dataForGame.putString("difficulty", difficulty);
+        dataForGame.putBoolean("musicEnable", "开".equals(musicChoice));
+        Intent intentToGame = new Intent(MenuActivity.this, GameActivity.class);
+        intentToGame.putExtras(dataForGame);
+        startActivity(intentToGame);
     }
 }

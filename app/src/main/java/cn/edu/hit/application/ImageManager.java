@@ -9,7 +9,7 @@ import android.graphics.Matrix;
 import cn.edu.hit.R;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
-import cn.edu.hit.basic.GameBackground;
+import cn.edu.hit.background.EasyGameBackground;
 import cn.edu.hit.bullet.EnemyBullet;
 import cn.edu.hit.bullet.HeroBullet;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class ImageManager {
      */
     private static final Map<String, Bitmap> CLASSNAME_IMAGE_MAP = new HashMap<>();
 
-    public static Bitmap BACKGROUND_IMAGE;
+    public static Bitmap BACKGROUND_IMAGE_EASY;
     public static Bitmap HERO_IMAGE;
     public static Bitmap HERO_BULLET_IMAGE;
     public static Bitmap ENEMY_BULLET_IMAGE;
@@ -44,7 +44,7 @@ public class ImageManager {
 
 
     public static void initImages(Context context) {
-        BACKGROUND_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg);
+        BACKGROUND_IMAGE_EASY = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg);
 
         HERO_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.hero);
         MOB_ENEMY_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.mob);
@@ -58,7 +58,7 @@ public class ImageManager {
         //BOSS 图片
         BOSS_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.boss);
 
-        CLASSNAME_IMAGE_MAP.put(GameBackground.class.getName(), BACKGROUND_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(EasyGameBackground.class.getName(), BACKGROUND_IMAGE_EASY);
         CLASSNAME_IMAGE_MAP.put(HeroAircraft.class.getName(), HERO_IMAGE);
         CLASSNAME_IMAGE_MAP.put(MobEnemy.class.getName(), MOB_ENEMY_IMAGE);
         CLASSNAME_IMAGE_MAP.put(HeroBullet.class.getName(), HERO_BULLET_IMAGE);
