@@ -13,12 +13,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import cn.edu.hit.R;
 import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.activity.RankActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
 import cn.edu.hit.application.ImageManager;
+import cn.edu.hit.application.MusicService;
+import cn.edu.hit.background.GameBackground;
 import cn.edu.hit.basic.FlyingObject;
 import cn.edu.hit.background.EasyGameBackground;
 import cn.edu.hit.bullet.AbstractBullet;
@@ -28,10 +31,10 @@ import cn.edu.hit.bullet.AbstractBullet;
  *
  * @author hitsz
  */
-public class Game extends FrameLayout {
-    private Activity context;
+public abstract class Game extends FrameLayout {
+    protected Activity context;
 
-    private EasyGameBackground background;
+    private GameBackground background;
 
     private int backGroundTop = 0;
 
@@ -49,6 +52,7 @@ public class Game extends FrameLayout {
     private final List<AbstractAircraft> enemyAircrafts;
     private final List<AbstractBullet> heroBullets;
     private final List<AbstractBullet> enemyBullets;
+    private AbstractAircraft boss;
 
     private int enemyMaxNumber = 5;
 
@@ -73,6 +77,7 @@ public class Game extends FrameLayout {
      * 背景音乐相关
      */
     private boolean musicEnable;
+    private Intent musicIntent;
 
     public Game(Activity context, String difficulty, boolean musicEnable) {
         super(context);
@@ -86,7 +91,7 @@ public class Game extends FrameLayout {
                 GameActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
                 0, 0, 100);
         //交给简单工厂去做
-        background = new EasyGameBackground(context);
+        background = createBackground();
         scoreAndHp = new TextView(context);
         scoreAndHp.setTextColor(Color.RED);
 
@@ -98,9 +103,17 @@ public class Game extends FrameLayout {
         heroBullets = new LinkedList<>();
         enemyBullets = new LinkedList<>();
 
+
         //Scheduled 线程池，用于定时任务调度
         executorService = new ScheduledThreadPoolExecutor(1);
+
+        if (musicEnable) {
+            musicIntent = new Intent(context, MusicService.class);
+            context.startService(musicIntent);
+        }
     }
+
+    protected abstract GameBackground createBackground();
 
     /**
      * 游戏启动入口，执行游戏逻辑
@@ -155,7 +168,12 @@ public class Game extends FrameLayout {
          */
         executorService.scheduleWithFixedDelay(task, timeInterval, timeInterval, TimeUnit.MILLISECONDS);
 
+
     }
+
+    //***********************
+    //      Action 各部分
+    //***********************
 
     private void gameOverCheck() {
         if (heroAircraft.getHp() <= 0) {
@@ -164,17 +182,18 @@ public class Game extends FrameLayout {
             gameOverFlag = true;
             System.out.println("Game Over!");
 
+            if (musicEnable) {
+                context.stopService(musicIntent);
+            }
+
             Intent intentToRank = new Intent(context, RankActivity.class);
             intentToRank.putExtra("difficulty", difficulty);
+            intentToRank.putExtra("score", score);
             context.startActivity(intentToRank);
 
             context.finish();
         }
     }
-
-    //***********************
-    //      Action 各部分
-    //***********************
 
     private boolean timeCountAndNewCycleJudge() {
         cycleTime += timeInterval;
@@ -237,6 +256,8 @@ public class Game extends FrameLayout {
                 }
                 if (enemyAircraft.crash(bullet)) {
                     // 敌机撞击到英雄机子弹
+                    //播放音频
+                    MusicService.playSound(musicEnable, R.raw.bullet_hit);
                     // 敌机损失一定生命值
                     enemyAircraft.decreaseHp(bullet.getPower());
                     bullet.vanish();
@@ -342,7 +363,7 @@ public class Game extends FrameLayout {
         g.drawString("SCORE:" + this.score, x, y);
         y = y + 20;
         g.drawString("LIFE:" + this.heroAircraft.getHp(), x, y);*/
-        context.runOnUiThread(()-> scoreAndHp.setText("SCORE:" + this.score + '\n' + "LIFE:" + this.heroAircraft.getHp()));
+        context.runOnUiThread(() -> scoreAndHp.setText("SCORE:" + this.score + '\n' + "LIFE:" + this.heroAircraft.getHp()));
     }
 
 

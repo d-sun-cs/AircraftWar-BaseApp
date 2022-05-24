@@ -9,7 +9,9 @@ import android.graphics.Matrix;
 import cn.edu.hit.R;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
+import cn.edu.hit.background.DifficultGameBackground;
 import cn.edu.hit.background.EasyGameBackground;
+import cn.edu.hit.background.SimpleGameBackground;
 import cn.edu.hit.bullet.EnemyBullet;
 import cn.edu.hit.bullet.HeroBullet;
 import java.util.HashMap;
@@ -30,6 +32,9 @@ public class ImageManager {
     private static final Map<String, Bitmap> CLASSNAME_IMAGE_MAP = new HashMap<>();
 
     public static Bitmap BACKGROUND_IMAGE_EASY;
+    public static Bitmap BACKGROUND_IMAGE_SIMPLE;
+    public static Bitmap BACKGROUND_IMAGE_DIFFICULT;
+
     public static Bitmap HERO_IMAGE;
     public static Bitmap HERO_BULLET_IMAGE;
     public static Bitmap ENEMY_BULLET_IMAGE;
@@ -45,6 +50,8 @@ public class ImageManager {
 
     public static void initImages(Context context) {
         BACKGROUND_IMAGE_EASY = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg);
+        BACKGROUND_IMAGE_SIMPLE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg2);
+        BACKGROUND_IMAGE_DIFFICULT = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg5);
 
         HERO_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.hero);
         MOB_ENEMY_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.mob);
@@ -59,6 +66,10 @@ public class ImageManager {
         BOSS_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.boss);
 
         CLASSNAME_IMAGE_MAP.put(EasyGameBackground.class.getName(), BACKGROUND_IMAGE_EASY);
+        CLASSNAME_IMAGE_MAP.put(SimpleGameBackground.class.getName(), BACKGROUND_IMAGE_SIMPLE);
+        CLASSNAME_IMAGE_MAP.put(DifficultGameBackground.class.getName(), BACKGROUND_IMAGE_DIFFICULT);
+
+
         CLASSNAME_IMAGE_MAP.put(HeroAircraft.class.getName(), HERO_IMAGE);
         CLASSNAME_IMAGE_MAP.put(MobEnemy.class.getName(), MOB_ENEMY_IMAGE);
         CLASSNAME_IMAGE_MAP.put(HeroBullet.class.getName(), HERO_BULLET_IMAGE);

@@ -6,14 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activity.MenuActivity">
 
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册" />
+
     <RelativeLayout
         android:id="@+id/startGameButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:paddingBottom="180sp"
-        >
+        android:paddingBottom="180sp">
+
         <Button
             android:id="@+id/startEasyGame"
             android:layout_width="wrap_content"
@@ -43,12 +49,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/startGameButtons"
         android:layout_centerHorizontal="true">
+
         <TextView
             android:id="@+id/musicText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="音效："
-            android:textSize="17sp"/>
+            android:textSize="17sp" />
+
         <Spinner
             android:id="@+id/musicChoice"
             android:layout_width="wrap_content"

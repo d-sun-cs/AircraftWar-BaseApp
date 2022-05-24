@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import cn.edu.hit.application.ImageManager;
+import cn.edu.hit.application.game.EasyGame;
 import cn.edu.hit.application.game.Game;
+import cn.edu.hit.factory.GameFactory;
 
 public class GameActivity extends Activity {
     public static int WINDOW_WIDTH;
@@ -29,7 +31,7 @@ public class GameActivity extends Activity {
         Log.d("TAG", "onCreate: GameActivity收到的数据：" + difficulty + ", " + musicEnable);
 
         //交给简单工厂去做
-        Game game = new Game(this, difficulty, musicEnable);
+        Game game = GameFactory.createGame(this, difficulty, musicEnable);
 
         setContentView(game);
         game.action();
