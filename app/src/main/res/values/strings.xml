@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AircraftWar</string>
+    <string name="startGame">开始游戏</string>
 </resources>

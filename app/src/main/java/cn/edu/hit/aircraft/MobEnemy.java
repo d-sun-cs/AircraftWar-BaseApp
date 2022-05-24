@@ -7,7 +7,7 @@ import android.content.Context;
 import java.util.LinkedList;
 import java.util.List;
 
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.bullet.AbstractBullet;
 
 /**
@@ -26,7 +26,7 @@ public class MobEnemy extends AbstractAircraft {
     public void forward() {
         super.forward();
         // 判定 y 轴向下飞行出界
-        if (locationY >= MainActivity.WINDOW_HEIGHT) {
+        if (locationY >= GameActivity.WINDOW_HEIGHT) {
             vanish();
         }
     }

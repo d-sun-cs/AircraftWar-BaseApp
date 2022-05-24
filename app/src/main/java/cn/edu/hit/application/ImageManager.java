@@ -4,11 +4,12 @@ package cn.edu.hit.application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 import cn.edu.hit.R;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
-import cn.edu.hit.basic.GameBackground;
+import cn.edu.hit.background.EasyGameBackground;
 import cn.edu.hit.bullet.EnemyBullet;
 import cn.edu.hit.bullet.HeroBullet;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class ImageManager {
      */
     private static final Map<String, Bitmap> CLASSNAME_IMAGE_MAP = new HashMap<>();
 
-    public static Bitmap BACKGROUND_IMAGE;
+    public static Bitmap BACKGROUND_IMAGE_EASY;
     public static Bitmap HERO_IMAGE;
     public static Bitmap HERO_BULLET_IMAGE;
     public static Bitmap ENEMY_BULLET_IMAGE;
@@ -43,7 +44,7 @@ public class ImageManager {
 
 
     public static void initImages(Context context) {
-        BACKGROUND_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg);
+        BACKGROUND_IMAGE_EASY = BitmapFactory.decodeResource(context.getResources(), R.mipmap.bg);
 
         HERO_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.hero);
         MOB_ENEMY_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.mob);
@@ -57,7 +58,7 @@ public class ImageManager {
         //BOSS 图片
         BOSS_IMAGE = BitmapFactory.decodeResource(context.getResources(), R.mipmap.boss);
 
-        CLASSNAME_IMAGE_MAP.put(GameBackground.class.getName(), BACKGROUND_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(EasyGameBackground.class.getName(), BACKGROUND_IMAGE_EASY);
         CLASSNAME_IMAGE_MAP.put(HeroAircraft.class.getName(), HERO_IMAGE);
         CLASSNAME_IMAGE_MAP.put(MobEnemy.class.getName(), MOB_ENEMY_IMAGE);
         CLASSNAME_IMAGE_MAP.put(HeroBullet.class.getName(), HERO_BULLET_IMAGE);
@@ -80,6 +81,26 @@ public class ImageManager {
             return null;
         }
         return get(obj.getClass().getName());
+    }
+
+    /**
+     * 调整图片大小
+     *
+     * @param bitmap 源
+     * @param dst_w  输出宽度
+     * @param dst_h  输出高度
+     * @return
+     */
+    public static Bitmap imageScale(Bitmap bitmap, float dst_w, float dst_h) {
+        int src_w = bitmap.getWidth();
+        int src_h = bitmap.getHeight();
+        float scale_w =  dst_w / src_w;
+        float scale_h =  dst_h / src_h;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale_w, scale_h);
+        Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, src_w, src_h, matrix,
+                true);
+        return dstbmp;
     }
 
 }

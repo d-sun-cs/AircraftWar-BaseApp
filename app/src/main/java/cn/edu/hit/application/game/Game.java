@@ -2,18 +2,10 @@ package cn.edu.hit.application.game;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,13 +13,14 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
+import cn.edu.hit.activity.RankActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
 import cn.edu.hit.application.ImageManager;
 import cn.edu.hit.basic.FlyingObject;
-import cn.edu.hit.basic.GameBackground;
+import cn.edu.hit.background.EasyGameBackground;
 import cn.edu.hit.bullet.AbstractBullet;
 
 /**
@@ -38,7 +31,7 @@ import cn.edu.hit.bullet.AbstractBullet;
 public class Game extends FrameLayout {
     private Activity context;
 
-    private GameBackground background;
+    private EasyGameBackground background;
 
     private int backGroundTop = 0;
 
@@ -71,20 +64,29 @@ public class Game extends FrameLayout {
     private int cycleDuration = 600;
     private int cycleTime = 0;
 
+    /**
+     * 单机游戏难度
+     */
+    private String difficulty;
 
-    public Game(Activity context) {
+    /**
+     * 背景音乐相关
+     */
+    private boolean musicEnable;
+
+    public Game(Activity context, String difficulty, boolean musicEnable) {
         super(context);
         this.context = context;
+        this.difficulty = difficulty;
+        this.musicEnable = musicEnable;
+
         heroAircraft = new HeroAircraft(
                 context
-                , MainActivity.WINDOW_WIDTH / 2,
-                MainActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
+                , GameActivity.WINDOW_WIDTH / 2,
+                GameActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
                 0, 0, 100);
-        heroAircraft.setOnTouchListener((v, event) -> {
-            heroAircraft.setLocation(event.getX(), event.getY());
-            return true;
-        });
-        background = new GameBackground(context);
+        //交给简单工厂去做
+        background = new EasyGameBackground(context);
         scoreAndHp = new TextView(context);
         scoreAndHp.setTextColor(Color.RED);
 
@@ -98,10 +100,6 @@ public class Game extends FrameLayout {
 
         //Scheduled 线程池，用于定时任务调度
         executorService = new ScheduledThreadPoolExecutor(1);
-
-        //启动英雄机鼠标监听
-        //new HeroController(this, heroAircraft);
-
     }
 
     /**
@@ -120,8 +118,8 @@ public class Game extends FrameLayout {
                 if (enemyAircrafts.size() < enemyMaxNumber) {
                     MobEnemy mobEnemy = new MobEnemy(
                             context,
-                            (int) (Math.random() * (MainActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
-                            (int) (Math.random() * MainActivity.WINDOW_HEIGHT * 0.2),
+                            (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
+                            (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
                             0,
                             10,
                             30
@@ -148,13 +146,7 @@ public class Game extends FrameLayout {
             paint();
 
             // 游戏结束检查
-            if (heroAircraft.getHp() <= 0) {
-                // 游戏结束
-                executorService.shutdown();
-                gameOverFlag = true;
-                System.out.println("Game Over!");
-            }
-
+            gameOverCheck();
         };
 
         /**
@@ -163,6 +155,21 @@ public class Game extends FrameLayout {
          */
         executorService.scheduleWithFixedDelay(task, timeInterval, timeInterval, TimeUnit.MILLISECONDS);
 
+    }
+
+    private void gameOverCheck() {
+        if (heroAircraft.getHp() <= 0) {
+            // 游戏结束
+            executorService.shutdown();
+            gameOverFlag = true;
+            System.out.println("Game Over!");
+
+            Intent intentToRank = new Intent(context, RankActivity.class);
+            intentToRank.putExtra("difficulty", difficulty);
+            context.startActivity(intentToRank);
+
+            context.finish();
+        }
     }
 
     //***********************
@@ -300,7 +307,7 @@ public class Game extends FrameLayout {
         background.setBackGroundTop(backGroundTop);
         context.runOnUiThread(background::invalidate);
         this.backGroundTop += 1;
-        if (this.backGroundTop == MainActivity.WINDOW_HEIGHT) {
+        if (this.backGroundTop == GameActivity.WINDOW_HEIGHT) {
             this.backGroundTop = 0;
         }
 

@@ -4,6 +4,7 @@ package cn.edu.hit.aircraft;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class HeroAircraft extends AbstractAircraft {
         int x = this.getLocationX();
         int y = this.getLocationY() + direction * 2;
         int speedX = 0;
-        int speedY = this.getSpeedY() + direction * 5;
+        int speedY = direction * 15;
         AbstractBullet abstractBullet;
         for (int i = 0; i < shootNum; i++) {
             // 子弹发射位置相对飞机位置向前偏移
@@ -61,5 +62,16 @@ public class HeroAircraft extends AbstractAircraft {
             res.add(abstractBullet);
         }
         return res;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
+        if (Math.abs(touchX - getLocationX()) > getImageWidth() * zoomFactor|| Math.abs(touchY - getLocationY()) > getImageHeight() * zoomFactor * zoomFactor) {
+            return true;
+        }
+        setLocation(touchX, touchY);
+        return true;
     }
 }

@@ -1,18 +1,15 @@
-package cn.edu.hit.basic;
+package cn.edu.hit.background;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 
-import cn.edu.hit.R;
-import cn.edu.hit.activity.MainActivity;
+import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.application.ImageManager;
 
-public class GameBackground extends View {
+public class EasyGameBackground extends View {
     Context context;
 
     /**
@@ -39,7 +36,7 @@ public class GameBackground extends View {
 
     private int backGroundTop;
 
-    public GameBackground(Context context) {
+    public EasyGameBackground(Context context) {
         super(context);
         this.context = context;
     }
@@ -54,8 +51,8 @@ public class GameBackground extends View {
         }
         Bitmap background0 = Bitmap.createBitmap(background,
                 0,
-                MainActivity.WINDOW_HEIGHT - backGroundTop,
-                MainActivity.WINDOW_WIDTH,
+                GameActivity.WINDOW_HEIGHT - backGroundTop,
+                GameActivity.WINDOW_WIDTH,
                 backGroundTop);
 
         canvas.drawBitmap(background0, 0, 0, new Paint());
@@ -66,27 +63,7 @@ public class GameBackground extends View {
         if (image == null) {
             image = ImageManager.get(this);
         }
-        return imageScale(image, MainActivity.WINDOW_WIDTH, MainActivity.WINDOW_HEIGHT);
-    }
-
-    /**
-     * 调整图片大小
-     *
-     * @param bitmap 源
-     * @param dst_w  输出宽度
-     * @param dst_h  输出高度
-     * @return
-     */
-    private Bitmap imageScale(Bitmap bitmap, int dst_w, int dst_h) {
-        int src_w = bitmap.getWidth();
-        int src_h = bitmap.getHeight();
-        float scale_w = ((float) dst_w) / src_w;
-        float scale_h = ((float) dst_h) / src_h;
-        Matrix matrix = new Matrix();
-        matrix.postScale(scale_w, scale_h);
-        Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, src_w, src_h, matrix,
-                true);
-        return dstbmp;
+        return ImageManager.imageScale(image, GameActivity.WINDOW_WIDTH, GameActivity.WINDOW_HEIGHT);
     }
 
     public int getImageWidth() {

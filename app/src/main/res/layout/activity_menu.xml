@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MenuActivity">
+
+    <RelativeLayout
+        android:id="@+id/startGameButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="180sp"
+        >
+        <Button
+            android:id="@+id/startEasyGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="简单模式" />
+
+        <Button
+            android:id="@+id/startSimpleGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startEasyGame"
+            android:layout_marginTop="50sp"
+            android:layout_marginBottom="50sp"
+            android:text="普通模式" />
+
+        <Button
+            android:id="@+id/startDifficultGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startSimpleGame"
+            android:text="困难模式" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startGameButtons"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/musicText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音效："
+            android:textSize="17sp"/>
+        <Spinner
+            android:id="@+id/musicChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/musicText"
+            android:layout_toRightOf="@+id/musicText"
+            android:entries="@array/musicEnable" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
