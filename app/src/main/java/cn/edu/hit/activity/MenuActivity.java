@@ -50,7 +50,7 @@ public class MenuActivity extends Activity {
                 public void run()
                 {
                     //把网络访问的代码放在这里
-                    httpRequest.get("http://192.168.137.1:8888/ideas/hot", new HashMap<>());
+                    httpRequest.get("http://192.168.137.1:9999/test", new HashMap<>());
                 }
             }.start();
         });

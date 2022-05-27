@@ -14,4 +14,9 @@ public class EasyGame extends Game{
     protected GameBackground createBackground() {
         return new EasyGameBackground(context);
     }
+
+    @Override
+    protected void scoreCheck() {
+
+    }
 }

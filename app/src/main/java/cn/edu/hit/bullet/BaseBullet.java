@@ -11,11 +11,11 @@ import cn.edu.hit.basic.FlyingObject;
  *
  * @author hitsz
  */
-public class AbstractBullet extends FlyingObject {
+public class BaseBullet extends FlyingObject {
 
     private int power = 10;
 
-    public AbstractBullet(Context context, int locationX, int locationY, int speedX, int speedY, int power) {
+    public BaseBullet(Context context, int locationX, int locationY, int speedX, int speedY, int power) {
         super(context, locationX, locationY, speedX, speedY);
         this.power = power;
     }

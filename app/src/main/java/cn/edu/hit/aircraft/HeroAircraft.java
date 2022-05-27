@@ -2,15 +2,20 @@ package cn.edu.hit.aircraft;
 
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import cn.edu.hit.bullet.AbstractBullet;
+import cn.edu.hit.bullet.BaseBullet;
 import cn.edu.hit.bullet.HeroBullet;
+import cn.edu.hit.prop.AbstractProp;
+import cn.edu.hit.prop.BloodProp;
+import cn.edu.hit.prop.BulletProp;
+import cn.edu.hit.strategy.ScatteringShootStrategy;
+import cn.edu.hit.strategy.ShootStrategy;
+import cn.edu.hit.strategy.StraightShootStrategy;
 
 /**
  * 英雄飞机，游戏玩家操控
@@ -25,6 +30,10 @@ public class HeroAircraft extends AbstractAircraft {
     private int shootNum = 1;     //子弹一次发射数量
     private int power = 30;       //子弹伤害
     private int direction = -1;  //子弹射击方向 (向上发射：1，向下发射：-1)
+
+    private ShootStrategy shootStrategy = new StraightShootStrategy();
+    private boolean isScattering = false;
+    private Thread scatteringThread;
 
     /**
      * @param locationX 英雄机位置x坐标
@@ -48,20 +57,43 @@ public class HeroAircraft extends AbstractAircraft {
      * 通过射击产生子弹
      * @return 射击出的子弹List
      */
-    public List<AbstractBullet> shoot() {
-        List<AbstractBullet> res = new LinkedList<>();
+    public List<BaseBullet> shoot() {
         int x = this.getLocationX();
-        int y = this.getLocationY() + direction * 2;
+        int y = this.getLocationY() + direction * 2 - getImageHeight() / 2;
         int speedX = 0;
         int speedY = direction * 15;
-        AbstractBullet abstractBullet;
-        for (int i = 0; i < shootNum; i++) {
-            // 子弹发射位置相对飞机位置向前偏移
-            // 多个子弹横向分散
-            abstractBullet = new HeroBullet(context, x + (i * 2 - shootNum + 1) * 10, y - getImageHeight() / 2, speedX, speedY, power);
-            res.add(abstractBullet);
+
+        return shootStrategy.shoot(HeroBullet.class, context, x, y, -1 * (shootNum - 1), speedY, power, shootNum);
+    }
+
+    @Override
+    public AbstractProp produceProp() {
+        return null;
+    }
+
+    @Override
+    public void update(Class<? extends AbstractProp> propClass) {
+        if (propClass.equals(BloodProp.class)) {
+            hp += 20;
+        } else if (propClass.equals(BulletProp.class)) {
+            if (isScattering) {
+                scatteringThread.interrupt();
+            }
+            this.shootStrategy = new ScatteringShootStrategy();
+            this.shootNum = 4;
+            isScattering = true;
+            scatteringThread = new Thread(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(8);
+                    this.shootStrategy = new StraightShootStrategy();
+                    this.shootNum = 1;
+                    isScattering = false;
+                } catch (InterruptedException e) {
+                    System.out.println("子弹道具刷新");
+                }
+            });
+            scatteringThread.start();
         }
-        return res;
     }
 
     @Override

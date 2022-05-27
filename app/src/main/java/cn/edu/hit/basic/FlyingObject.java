@@ -1,6 +1,7 @@
 package cn.edu.hit.basic;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -61,7 +62,7 @@ public abstract class FlyingObject extends View {
     /**
      * 应用上下文
      */
-    protected Context context;
+    protected Activity context;
 
     /**
      * 图片放大的倍数
@@ -76,12 +77,12 @@ public abstract class FlyingObject extends View {
 
     public FlyingObject(Context context) {
         super(context);
-        this.context = context;
+        this.context = (Activity) context;
     }
 
     public FlyingObject(Context context, int locationX, int locationY, int speedX, int speedY) {
         super(context);
-        this.context = context;
+        this.context = (Activity) context;
         this.locationX = locationX;
         this.locationY = locationY;
         this.speedX = speedX;

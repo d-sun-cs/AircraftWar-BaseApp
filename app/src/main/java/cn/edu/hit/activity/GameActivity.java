@@ -14,6 +14,8 @@ public class GameActivity extends Activity {
     public static int WINDOW_WIDTH;
     public static int WINDOW_HEIGHT;
 
+    private Game game;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +30,16 @@ public class GameActivity extends Activity {
         String difficulty = dataForGame.getString("difficulty");
         boolean musicEnable = dataForGame.getBoolean("musicEnable");
 
-        Log.d("TAG", "onCreate: GameActivity收到的数据：" + difficulty + ", " + musicEnable);
-
         //交给简单工厂去做
-        Game game = GameFactory.createGame(this, difficulty, musicEnable);
+        game = GameFactory.createGame(this, difficulty, musicEnable);
 
         setContentView(game);
         game.action();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        game.getExecutorService().shutdown();
     }
 }

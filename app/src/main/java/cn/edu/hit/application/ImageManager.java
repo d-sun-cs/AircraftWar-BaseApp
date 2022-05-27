@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 import cn.edu.hit.R;
+import cn.edu.hit.aircraft.BossEnemy;
+import cn.edu.hit.aircraft.EliteEnemy;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
 import cn.edu.hit.background.DifficultGameBackground;
@@ -14,6 +16,10 @@ import cn.edu.hit.background.EasyGameBackground;
 import cn.edu.hit.background.SimpleGameBackground;
 import cn.edu.hit.bullet.EnemyBullet;
 import cn.edu.hit.bullet.HeroBullet;
+import cn.edu.hit.prop.BloodProp;
+import cn.edu.hit.prop.BombProp;
+import cn.edu.hit.prop.BulletProp;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,12 +81,12 @@ public class ImageManager {
         CLASSNAME_IMAGE_MAP.put(HeroBullet.class.getName(), HERO_BULLET_IMAGE);
         CLASSNAME_IMAGE_MAP.put(EnemyBullet.class.getName(), ENEMY_BULLET_IMAGE);
         //TODO 精英敌机图片、道具图片
-        //CLASSNAME_IMAGE_MAP.put(EliteEnemy.class.getName(), ELITE_ENEMY_IMAGE);
-        //CLASSNAME_IMAGE_MAP.put(BloodProp.class.getName(), BLOOD_PROP_IMAGE);
-        //CLASSNAME_IMAGE_MAP.put(BombProp.class.getName(), BOMB_PROP_IMAGE);
-        //CLASSNAME_IMAGE_MAP.put(BulletProp.class.getName(), BULLET_PROP_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(EliteEnemy.class.getName(), ELITE_ENEMY_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(BloodProp.class.getName(), BLOOD_PROP_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(BombProp.class.getName(), BOMB_PROP_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(BulletProp.class.getName(), BULLET_PROP_IMAGE);
         //Boss图片
-        //CLASSNAME_IMAGE_MAP.put(BossEnemy.class.getName(), BOSS_IMAGE);
+        CLASSNAME_IMAGE_MAP.put(BossEnemy.class.getName(), BOSS_IMAGE);
     }
 
     public static Bitmap get(String className){

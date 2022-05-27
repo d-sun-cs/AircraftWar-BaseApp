@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -17,14 +19,16 @@ import cn.edu.hit.R;
 import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.activity.RankActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
+import cn.edu.hit.aircraft.EliteEnemy;
 import cn.edu.hit.aircraft.HeroAircraft;
 import cn.edu.hit.aircraft.MobEnemy;
 import cn.edu.hit.application.ImageManager;
 import cn.edu.hit.application.MusicService;
 import cn.edu.hit.background.GameBackground;
 import cn.edu.hit.basic.FlyingObject;
-import cn.edu.hit.background.EasyGameBackground;
-import cn.edu.hit.bullet.AbstractBullet;
+import cn.edu.hit.bullet.BaseBullet;
+import cn.edu.hit.prop.AbstractProp;
+import cn.edu.hit.prop.BloodProp;
 
 /**
  * 游戏主面板，游戏启动
@@ -43,6 +47,10 @@ public abstract class Game extends FrameLayout {
      */
     private final ScheduledExecutorService executorService;
 
+    public ScheduledExecutorService getExecutorService() {
+        return executorService;
+    }
+
     /**
      * 时间间隔(ms)，控制刷新频率
      */
@@ -50,15 +58,19 @@ public abstract class Game extends FrameLayout {
 
     private final HeroAircraft heroAircraft;
     private final List<AbstractAircraft> enemyAircrafts;
-    private final List<AbstractBullet> heroBullets;
-    private final List<AbstractBullet> enemyBullets;
-    private AbstractAircraft boss;
+    private final List<BaseBullet> heroBullets;
+    private final List<BaseBullet> enemyBullets;
+    protected AbstractAircraft boss;
+
+    private final List<AbstractProp> props;
 
     private int enemyMaxNumber = 5;
 
     private boolean gameOverFlag = false;
-    private int score = 0;
+    protected int score = 0;
     private int time = 0;
+
+
 
     private TextView scoreAndHp;
     /**
@@ -89,7 +101,7 @@ public abstract class Game extends FrameLayout {
                 context
                 , GameActivity.WINDOW_WIDTH / 2,
                 GameActivity.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight(),
-                0, 0, 100);
+                0, 0, 10000);
         //交给简单工厂去做
         background = createBackground();
         scoreAndHp = new TextView(context);
@@ -102,6 +114,8 @@ public abstract class Game extends FrameLayout {
         enemyAircrafts = new LinkedList<>();
         heroBullets = new LinkedList<>();
         enemyBullets = new LinkedList<>();
+
+        props = new LinkedList<>();
 
 
         //Scheduled 线程池，用于定时任务调度
@@ -129,16 +143,28 @@ public abstract class Game extends FrameLayout {
                 System.out.println(time);
                 // 新敌机产生
                 if (enemyAircrafts.size() < enemyMaxNumber) {
-                    MobEnemy mobEnemy = new MobEnemy(
-                            context,
-                            (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
-                            (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
-                            0,
-                            10,
-                            30
-                    );
-                    enemyAircrafts.add(mobEnemy);
-                    context.runOnUiThread(() -> this.addView(mobEnemy));
+                    MobEnemy enemy ;
+                    if (System.currentTimeMillis() % 3 == 1) {
+                        enemy = new EliteEnemy(
+                                context,
+                                (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
+                                (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
+                                0,
+                                10,
+                                30
+                        );
+                    } else {
+                        enemy = new MobEnemy(
+                                context,
+                                (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
+                                (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
+                                0,
+                                10,
+                                30
+                        );
+                    }
+                    enemyAircrafts.add(enemy);
+                    context.runOnUiThread(() -> this.addView(enemy));
                 }
                 // 飞机射出子弹
                 shootAction();
@@ -150,8 +176,14 @@ public abstract class Game extends FrameLayout {
             // 飞机移动
             aircraftsMoveAction();
 
+            //道具移动
+            propsMoveAction();
+
             // 撞击检测
             crashCheckAction();
+
+            // 撞击检测
+            scoreCheck();
 
             // 后处理
             postProcessAction();
@@ -171,6 +203,9 @@ public abstract class Game extends FrameLayout {
 
     }
 
+
+    protected abstract void scoreCheck();
+
     //***********************
     //      Action 各部分
     //***********************
@@ -180,6 +215,7 @@ public abstract class Game extends FrameLayout {
             // 游戏结束
             executorService.shutdown();
             gameOverFlag = true;
+            MusicService.playSound(musicEnable, R.raw.game_over);
             System.out.println("Game Over!");
 
             if (musicEnable) {
@@ -208,20 +244,25 @@ public abstract class Game extends FrameLayout {
 
     private void shootAction() {
         // TODO 敌机射击
+        for (AbstractAircraft enemy : enemiesAddBoss()) {
+            for (BaseBullet bullet : enemy.shoot()) {
+                enemyBullets.add(bullet);
+                context.runOnUiThread(() -> this.addView(bullet));
+            }
+        }
 
         // 英雄射击
-        for (AbstractBullet bullet : heroAircraft.shoot()) {
+        for (BaseBullet bullet : heroAircraft.shoot()) {
             heroBullets.add(bullet);
             context.runOnUiThread(() -> this.addView(bullet));
-            //this.addView(bullet);
         }
     }
 
     private void bulletsMoveAction() {
-        for (AbstractBullet bullet : heroBullets) {
+        for (BaseBullet bullet : heroBullets) {
             bullet.forward();
         }
-        for (AbstractBullet bullet : enemyBullets) {
+        for (BaseBullet bullet : enemyBullets) {
             bullet.forward();
         }
     }
@@ -229,6 +270,12 @@ public abstract class Game extends FrameLayout {
     private void aircraftsMoveAction() {
         for (AbstractAircraft enemyAircraft : enemyAircrafts) {
             enemyAircraft.forward();
+        }
+    }
+
+    private void propsMoveAction() {
+        for (AbstractProp prop : props) {
+            prop.forward();
         }
     }
 
@@ -241,11 +288,23 @@ public abstract class Game extends FrameLayout {
      */
     private void crashCheckAction() {
         // TODO 敌机子弹攻击英雄
+        for (BaseBullet bullet : enemyBullets) {
+            if (bullet.notValid()) {
+                continue;
+            }
+            if (heroAircraft.crash(bullet)) {
+                // 敌机撞击到英雄机子弹
+                //播放音频
+                MusicService.playSound(musicEnable, R.raw.bullet_hit);
+                // 敌机损失一定生命值
+                heroAircraft.decreaseHp(bullet.getPower());
+                bullet.vanish();
+            }
+        }
 
-
-        for (AbstractAircraft enemyAircraft : enemyAircrafts) {
+        for (AbstractAircraft enemyAircraft : enemiesAddBoss()) {
             // 英雄子弹攻击敌机
-            for (AbstractBullet bullet : heroBullets) {
+            for (BaseBullet bullet : heroBullets) {
                 if (bullet.notValid()) {
                     continue;
                 }
@@ -264,10 +323,14 @@ public abstract class Game extends FrameLayout {
                     if (enemyAircraft.notValid()) {
                         // TODO 获得分数，产生道具补给
                         score += 10;
+                        AbstractProp prop = enemyAircraft.produceProp();
+                        if (Objects.nonNull(prop)) {
+                            context.runOnUiThread(() -> this.addView(prop));
+                            props.add(prop);
+                        }
                     }
                 }
             }
-
             // 英雄机 与 敌机 相撞，均损毁
             if (enemyAircraft.crash(heroAircraft) || heroAircraft.crash(enemyAircraft)) {
                 enemyAircraft.vanish();
@@ -277,6 +340,16 @@ public abstract class Game extends FrameLayout {
 
 
         // Todo: 我方获得道具，道具生效
+        for (AbstractProp prop : props) {
+            if (prop.crash(heroAircraft) || heroAircraft.crash(prop)) {
+                prop.subscribe(heroAircraft);
+                prop.subscribe(enemiesAddBoss());
+                prop.vanish();
+                prop.notifyObservers(musicEnable);
+                prop.unsubscribe(heroAircraft);
+                prop.unsubscribe(enemiesAddBoss());
+            }
+        }
 
     }
 
@@ -290,14 +363,14 @@ public abstract class Game extends FrameLayout {
      */
     private void postProcessAction() {
         for (int i = 0; i < enemyBullets.size(); i++) {
-            AbstractBullet enemyBullet = enemyBullets.get(i);
+            BaseBullet enemyBullet = enemyBullets.get(i);
             if (enemyBullet.notValid()) {
                 context.runOnUiThread(() -> this.removeView(enemyBullet));
                 enemyBullets.remove(i--);
             }
         }
         for (int i = 0; i < heroBullets.size(); i++) {
-            AbstractBullet heroBullet = heroBullets.get(i);
+            BaseBullet heroBullet = heroBullets.get(i);
             if (heroBullet.notValid()) {
                 context.runOnUiThread(() -> this.removeView(heroBullet));
                 heroBullets.remove(i--);
@@ -311,7 +384,20 @@ public abstract class Game extends FrameLayout {
             }
         }
 
+        for (int i = 0; i < props.size(); i++) {
+            AbstractProp prop = props.get(i);
+            if (prop.notValid()) {
+                context.runOnUiThread(() -> this.removeView(prop));
+                props.remove(i--);
+            }
+        }
+
+        if (Objects.nonNull(boss) && boss.notValid()) {
+            context.runOnUiThread(()-> this.removeView(boss));
+            MusicService.isBossAlive = false;
+        }
     }
+
 
 
     //***********************
@@ -337,12 +423,22 @@ public abstract class Game extends FrameLayout {
         paintImageWithPositionRevised(enemyBullets);
         paintImageWithPositionRevised(heroBullets);
 
-        paintImageWithPositionRevised(enemyAircrafts);
+        paintImageWithPositionRevised(enemiesAddBoss());
         context.runOnUiThread(heroAircraft::invalidate);
+
+        paintImageWithPositionRevised(props);
 
         //绘制得分和生命值
         paintScoreAndLife();
 
+    }
+
+    private List<AbstractAircraft> enemiesAddBoss() {
+        List<AbstractAircraft> enemyAircrafts0 = new ArrayList<>(enemyAircrafts);
+        if (Objects.nonNull(boss) && !boss.notValid()) {
+            enemyAircrafts0.add(boss);
+        }
+        return enemyAircrafts0;
     }
 
     private void paintImageWithPositionRevised(List<? extends FlyingObject> objects) {

@@ -8,7 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import cn.edu.hit.activity.GameActivity;
-import cn.edu.hit.bullet.AbstractBullet;
+import cn.edu.hit.bullet.BaseBullet;
+import cn.edu.hit.prop.AbstractProp;
+import cn.edu.hit.prop.BloodProp;
+import cn.edu.hit.prop.BombProp;
 
 /**
  * 普通敌机
@@ -32,8 +35,19 @@ public class MobEnemy extends AbstractAircraft {
     }
 
     @Override
-    public List<AbstractBullet> shoot() {
+    public List<BaseBullet> shoot() {
         return new LinkedList<>();
+    }
+
+    public AbstractProp produceProp() {
+        return null;
+    }
+
+    @Override
+    public void update(Class<? extends AbstractProp> propClass) {
+        if (propClass.equals(BombProp.class)) {
+            vanish();
+        }
     }
 
 }

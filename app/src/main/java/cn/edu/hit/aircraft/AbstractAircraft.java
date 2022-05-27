@@ -6,7 +6,8 @@ import android.content.Context;
 import java.util.List;
 
 import cn.edu.hit.basic.FlyingObject;
-import cn.edu.hit.bullet.AbstractBullet;
+import cn.edu.hit.bullet.BaseBullet;
+import cn.edu.hit.prop.AbstractProp;
 
 /**
  * 所有种类飞机的抽象父类：
@@ -46,7 +47,11 @@ public abstract class AbstractAircraft extends FlyingObject {
      *  可射击对象需实现，返回子弹
      *  非可射击对象空实现，返回null
      */
-    public abstract List<AbstractBullet> shoot();
+    public abstract List<BaseBullet> shoot();
+
+    public abstract AbstractProp produceProp();
+
+    public abstract void update(Class<? extends AbstractProp> propClass);
 
 }
 
