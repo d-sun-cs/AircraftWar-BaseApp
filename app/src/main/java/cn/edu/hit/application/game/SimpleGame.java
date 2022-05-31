@@ -29,6 +29,7 @@ public class SimpleGame extends Game {
         if (score >= step) {
             //没有boss则产生boss，已经有boss则刷新boss
             if (Objects.nonNull(boss)) {
+                context.runOnUiThread(()-> this.removeView(boss));
                 boss.vanish();
                 System.out.println("boss刷新");
             }

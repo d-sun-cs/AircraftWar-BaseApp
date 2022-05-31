@@ -78,7 +78,7 @@ public class MusicService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Runnable task = () -> {
-            if (isBossAlive) {
+            if (MusicService.isBossAlive) {
                 bgmPlayer.stop();
                 if (!bossBgmPlayer.isPlaying()) {
                     bossBgmPlayer.start();
