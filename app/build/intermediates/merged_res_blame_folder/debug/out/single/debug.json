@@ -1,0 +1,194 @@
+[
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-anydpi-v21_ic_launcher_background.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-anydpi-v21/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-xxhdpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-xxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bg5.jpg.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bg5.jpg"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_boss.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/boss.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_hero.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/hero.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable_et_back.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/drawable/et_back.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-xxxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable_lin_back.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/drawable/lin_back.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_mob.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/mob.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/layout_activity_menu.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/layout/activity_menu.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-mdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_bullet.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/bullet.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_elite.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/elite.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bg.jpg.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bg.jpg"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_prop_blood.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/prop_blood.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_bullet_hit.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/bullet_hit.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bg2.jpg.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bg2.jpg"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "cn.edu.hit.app-merged_res-5:/layout_activity_rank.xml.flat",
+        "source": "cn.edu.hit.app-main-7:/layout/activity_rank.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable_bt_shape.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/drawable/bt_shape.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-hdpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-hdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable_bt_shape_2.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/drawable/bt_shape_2.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bullet_hero.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bullet_hero.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_game_over.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/game_over.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bg3.jpg.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bg3.jpg"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-ldpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-ldpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bg4.jpg.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bg4.jpg"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_bgm_boss.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/bgm_boss.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_prop_bullet.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/prop_bullet.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_bullet_enemy.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/bullet_enemy.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/drawable-xhdpi_ic_launcher_background.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-pngs-0:/drawable-xhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_bgm.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/bgm.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_bomb_explosion.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/bomb_explosion.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_prop_bomb.png.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/prop_bomb.png"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/layout_activity_rank.xml.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/layout/activity_rank.xml"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/raw_get_supply.wav.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/raw/get_supply.wav"
+    },
+    {
+        "merged": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-merged_res-5:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/lx_pdy/Documents/gradle-6.5/daemon/7.3.3/cn.edu.hit.app-main-7:/mipmap-xhdpi/ic_launcher_round.webp"
+    }
+]

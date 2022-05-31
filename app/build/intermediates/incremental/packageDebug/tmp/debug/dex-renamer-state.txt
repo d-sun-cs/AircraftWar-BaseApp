@@ -1,0 +1,4 @@
+#Tue May 31 14:48:48 CST 2022
+base.0=/Users/lx_pdy/Desktop/Java_file/AircraftWar-BaseApp/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

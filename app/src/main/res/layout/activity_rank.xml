@@ -10,6 +10,7 @@
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bt_shape"
         android:text="难度：" />
 
     <TextView

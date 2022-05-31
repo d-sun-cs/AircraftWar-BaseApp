@@ -19,16 +19,15 @@ import cn.edu.hit.R;
 import cn.edu.hit.activity.GameActivity;
 import cn.edu.hit.activity.RankActivity;
 import cn.edu.hit.aircraft.AbstractAircraft;
-import cn.edu.hit.aircraft.EliteEnemy;
 import cn.edu.hit.aircraft.HeroAircraft;
-import cn.edu.hit.aircraft.MobEnemy;
 import cn.edu.hit.application.ImageManager;
 import cn.edu.hit.application.MusicService;
 import cn.edu.hit.background.GameBackground;
 import cn.edu.hit.basic.FlyingObject;
 import cn.edu.hit.bullet.BaseBullet;
+import cn.edu.hit.factory.EnemyFactory.EliteEnemyFactory;
+import cn.edu.hit.factory.EnemyFactory.MobEnemyFactory;
 import cn.edu.hit.prop.AbstractProp;
-import cn.edu.hit.prop.BloodProp;
 
 /**
  * 游戏主面板，游戏启动
@@ -39,6 +38,8 @@ public abstract class Game extends FrameLayout {
     protected Activity context;
 
     private GameBackground background;
+    private EliteEnemyFactory eliteEnemyFactory;
+    private MobEnemyFactory mobEnemyFactory;
 
     private int backGroundTop = 0;
 
@@ -96,7 +97,8 @@ public abstract class Game extends FrameLayout {
         this.context = context;
         this.difficulty = difficulty;
         this.musicEnable = musicEnable;
-
+        eliteEnemyFactory = new EliteEnemyFactory();
+        mobEnemyFactory = new MobEnemyFactory();
         heroAircraft = new HeroAircraft(
                 context
                 , GameActivity.WINDOW_WIDTH / 2,
@@ -143,25 +145,12 @@ public abstract class Game extends FrameLayout {
                 System.out.println(time);
                 // 新敌机产生
                 if (enemyAircrafts.size() < enemyMaxNumber) {
-                    MobEnemy enemy ;
+                    AbstractAircraft enemy ;
                     if (System.currentTimeMillis() % 3 == 1) {
-                        enemy = new EliteEnemy(
-                                context,
-                                (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
-                                (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
-                                0,
-                                10,
-                                30
-                        );
+                        enemy = eliteEnemyFactory.creatEnemy(context);
+
                     } else {
-                        enemy = new MobEnemy(
-                                context,
-                                (int) (Math.random() * (GameActivity.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
-                                (int) (Math.random() * GameActivity.WINDOW_HEIGHT * 0.2),
-                                0,
-                                10,
-                                30
-                        );
+                        enemy = mobEnemyFactory.creatEnemy(context);
                     }
                     enemyAircrafts.add(enemy);
                     context.runOnUiThread(() -> this.addView(enemy));
